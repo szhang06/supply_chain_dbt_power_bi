@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: shipment_performance
+    description: "Business performance metrics aggregated by dimensions"
+    columns:
+      - name: asset_id
+        description: "Foreign key to dim_assets"
+        tests:
+          - relationships:
+              to: ref('dim_assets')
+              field: asset_id
+      
+      - name: year
+        description: "Year of shipment"
+        tests:
+          - not_null
+      
+      - name: month
+        description: "Month of shipment (1-12)"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 12
+              strictly: false
+      
+      - name: day_of_week
+        description: "Day of week (0=Sunday to 6=Saturday)"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 6
+              strictly: false
+      
+      - name: total_shipments
+        description: "Count of shipments in this grouping"
+        tests:
+          - not_null
+      
+      # Document ALL metrics columns
+      - name: delayed_shipments
+        description: "Count of delayed shipments in this grouping"
+      
+      - name: delay_rate
+        description: "Percentage of shipments delayed (delayed/total)"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 1
+              strictly: false
+      
+      - name: avg_waiting_time
+        description: "Average waiting time (minutes) for this group"
+      
+      - name: avg_temperature
+        description: "Average temperature across shipments"
+      
+      - name: traffic_status
+        description: "Most common traffic condition for this group"

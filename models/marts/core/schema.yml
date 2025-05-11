@@ -1,0 +1,107 @@
+version: 2
+
+models:
+  - name: dim_assets
+    description: "Master dimension table for all transportation assets"
+    columns:
+      - name: asset_id
+        description: "Primary key - Unique identifier for each truck/asset"
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('fact_shipments')
+              field: asset_id
+      
+      - name: total_shipments
+        description: "Total count of shipments completed by this asset"
+        tests:
+          - not_null
+      
+      - name: avg_inventory_level
+        description: "Average inventory carried (units) calculated across all shipments"
+      
+      - name: avg_utilization
+        description: "Percentage utilization (0-100) of asset capacity"
+      
+      - name: avg_waiting_time
+        description: "Average waiting time (minutes) across all shipments"
+        tests:
+          - not_null
+
+  - name: fact_shipments
+    description: "Transactional records of all shipment events"
+    columns:
+      - name: shipment_id
+        description: "Surrogate primary key for shipment events"
+        tests:
+          - not_null
+          - unique
+      
+      - name: timestamp
+        description: "Exact time when shipment status was recorded"
+        tests:
+          - not_null
+      
+      - name: date
+        description: "Date derived from timestamp"
+        tests:
+          - not_null
+      
+      - name: asset_id
+        description: "Foreign key to dim_assets table"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_assets')
+              field: asset_id
+      
+      - name: shipment_status
+        description: "Current status (Delivered/In Transit/Delayed)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Delivered', 'In Transit', 'Delayed']
+      
+      - name: is_delayed
+        description: "Boolean flag (1=Delayed, 0=On Time)"
+      
+      - name: delay_reason
+        description: "Categorical reason for delay (Weather/Traffic/Mechanical)"
+        tests:
+          - accepted_values:
+              values: ['Weather', 'Traffic', 'Mechanical Failure', 'None']
+      
+      # Include ALL remaining columns similarly
+      - name: waiting_time_minutes
+        description: "Time spent waiting (minutes) during shipment"
+      
+      - name: temperature
+        description: "Ambient temperature (Celsius) during shipment"
+      
+      - name: humidity
+        description: "Relative humidity (%) during shipment"
+      
+      - name: user_transaction_amount
+        description: "Dollar amount of user transactions during shipment"
+      
+      - name: demand_forecast
+        description: "Predicted demand units for this shipment route"
+
+  - name: dim_time
+    description: "Time dimension table with date parts extracted"
+    columns:
+      - name: date
+        description: "Date in YYYY-MM-DD format"
+        tests:
+          - not_null
+          - unique
+      - name: year
+        description: "Year extracted from date"
+      - name: month
+        description: "Month extracted from date (1-12)"
+      - name: day
+        description: "Day extracted from date (1-31)"
+      - name: quarter
+      - name: day_of_week
+      - name: day_of_year
