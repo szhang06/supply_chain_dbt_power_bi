@@ -1,0 +1,76 @@
+
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_DATABASE', 'supply-chain-458613') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'schain_dataset') }}"
+    tables:
+      - name: slchain_data
+
+models:
+    - name: stg_smart_logistics
+      description: The entire dataset. It provides real-time data for smart logistics management in 2024. 
+      columns:
+          - name: timestamp
+            description: The date and time of the record.
+            tests:
+                - not_null:
+                    severity: warn
+          - name: asset_id 
+            description: Unique identifier for the logistical assets.
+            tests:
+                - not_null 
+          - name: latitude 
+            description: Geographical location of the asset for tracking.
+          - name: longitude 
+            description: Geographical location of the asset for tracking.
+          - name: inventory_level 
+            description: Current level of inventory.
+            tests:
+                - not_null
+          - name: shipment_status 
+            description: Status of the shipment.
+            tests:
+                - not_null
+          - name: temperature 
+            description: Temperature recorded at the time of shippment
+            tests:
+                - not_null
+          - name: humidity 
+            description: Humidity level at the time of shipment.
+            tests:
+                - not_null
+          - name: traffic_status 
+            description: Current traffic condition
+            tests:
+                - not_null
+          - name: waiting_time_minutes 
+            description: Waiting time in minutes during the logistical process.
+            tests:
+                - not_null
+          - name: user_transaction_amount 
+            description: Monetary amount spent by users
+            tests:
+                - not_null
+          - name: user_purchase_frequency 
+            description: Frequency of purchase made by the user.
+            tests:
+                - not_null
+          - name: delay_reason 
+            description: Reason for any delay.
+            tests:
+                - accepted_values:
+                    values: ['Weather', 'Mechanical Failure', 'Traffic', 'None']
+          - name: is_delayed 
+            description: Shipping is delayed or not.
+            tests:
+                - not_null
+          - name: asset_utilization_percentage 
+            description: How effective the asset has been used.
+            tests:
+                - not_null
+          - name: demand_forecast 
+            description: Predicted demand in the upcoming period.
+            tests:
+                - not_null
