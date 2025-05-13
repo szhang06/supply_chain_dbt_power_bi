@@ -24,6 +24,12 @@ SELECT
     traffic_status,
     temperature,
     humidity,
+    CASE WHEN humidity <= 50 THEN 'low'
+        WHEN humidity <= 70 THEN 'medium'
+        ELSE 'high'
+    END AS humidity_level,
+    longitude,
+    latitude,
     inventory_level,
     user_transaction_amount,
     user_purchase_frequency,
