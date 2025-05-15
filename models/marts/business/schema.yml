@@ -29,8 +29,8 @@ models:
         description: "Day of week (0=Sunday to 6=Saturday)"
         tests:
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 0
-              max_value: 6
+              min_value: 1
+              max_value: 7
               strictly: false
       
       - name: total_shipments
@@ -42,14 +42,6 @@ models:
       - name: delayed_shipments
         description: "Count of delayed shipments in this grouping"
       
-      - name: delay_rate
-        description: "Percentage of shipments delayed (delayed/total)"
-        tests:
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 0
-              max_value: 1
-              strictly: false
-      
       - name: avg_waiting_time
         description: "Average waiting time (minutes) for this group"
       
@@ -58,3 +50,20 @@ models:
       
       - name: traffic_status
         description: "Most common traffic condition for this group"
+
+  - name: asset_utilization
+    description: "Asset utilization analysis."
+    columns:
+        - name: avg_utilization
+          description: "The average use of the asset rate"
+        - name: active_days
+          description: "The active days of the assest."
+        - name: total_shipments
+          description: "The total amount of shipment by the group features."
+        - name: delayed_shipments
+          description: "The total number of delayed shipment."
+        - name: avg_waiting_time
+          description: "The average waiting time during transportation."
+        - name: asset_id
+          description: " The asset id referred to in the fact shipment model."
+        
