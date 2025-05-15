@@ -12,6 +12,7 @@ This project addresses a real-world business problem: **inefficient supply chain
 
 ## 🔧 Tech Stack
 
+- **BigQuery**: – Cloud-based data warehouse     
 - **DBT (Data Build Tool)** – Data transformation, testing, and documentation.
 - **Power BI** – Interactive dashboards for business insight.
 - **SQL** – Core logic for data modeling.
