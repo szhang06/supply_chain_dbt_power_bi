@@ -82,27 +82,4 @@ The Power BI report visualizes key supply chain metrics, enabling decision-maker
 
 ---
 
-## 🛠️ How to Run the Project
-
-### Prerequisites
-
-- DBT CLI installed ([Install Guide](https://docs.getdbt.com/dbt-cli/installation))
-- Power BI Desktop installed
-- A SQL database connection (PostgreSQL, Snowflake, etc.)
-
-### Instructions
-
-```bash
-# Clone the repo
-git clone https://github.com/szhang06/supply_chain_dbt_power_bi.git
-cd supply_chain_dbt_power_bi
-
-# Install DBT dependencies
-dbt deps
-
-# Configure your DBT profile (~/.dbt/profiles.yml)
-
-# Run the transformation pipeline
-dbt run
-dbt test
 
