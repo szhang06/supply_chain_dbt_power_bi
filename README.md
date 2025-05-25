@@ -52,33 +52,24 @@ Using DBT, raw supply chain data was transformed into clean, analytics-ready dat
 
 ---
 
-### Power BI Dashboard [ to be updated]
+### Power BI Dashboard 
 
 The Power BI report visualizes key supply chain metrics, enabling decision-makers to quickly identify bottlenecks and improvement areas.
-
-#### 📊 Dashboard Highlights
-
-- **Inventory Heatmaps** – Identify overstock/understock trends by region and product
-- **Supplier Scorecards** – Track on-time delivery, lead time variance, and defect rates
-- **Logistics Spend Analysis** – Drill down into transportation costs by route, carrier, and warehouse
-
-![dashboard](./images/dashboard_screenshot.png) <!-- Replace with actual image if available -->
 
 ---
 
 ## 📈 Key Business Insights
 
-- **15% of SKUs are chronically overstocked**, tying up $2M in excess inventory
-- **3 suppliers have >25% late deliveries**, creating production delays
-- **Southeast region incurs 20% higher logistics costs** due to inefficient routing
-
+- **Logistics**: 65.60% shipments delayed; top causes in order: weather (39.53%), mechanical (34.88%), and traffic (25.58%). The waiting times for different delay reasons are quite similar, with traffic causing the longest delay of ~35 min.
+- **Customers**: Peak spending on days 6/24/31; the median of purchase frequency is 6.
+- **Inventory**: Current stock aligns with demand, but the demand is higher than the stock in January and is very little in May.
 ---
 
 ## 💡 Recommendations
 
-1. **Adopt Just-in-Time inventory policies** to reduce holding costs
-2. **Diversify supplier base** to reduce dependency and improve lead time
-3. **Optimize routing plans** to balance cost and delivery speed across regions
+1. Better demand forecasting and inventory syncing to prevent urgent or partial shipments.
+2. Diversify supplier base to reduce dependency and improve lead time.
+3. Optimize routing plans to balance cost and delivery speed across regions
 
 ---
 
