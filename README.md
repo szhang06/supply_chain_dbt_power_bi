@@ -35,7 +35,7 @@ A global manufacturer faced rising costs and inconsistent supply chain performan
 
 ### Airflow Pipeline: Kaggle to BigQuery
 
-This project contains an Apache Airflow DAG that automates the workflow of downloading a dataset from [Kaggle](https://www.kaggle.com/datasets/ziya07/smart-logistics-supply-chain-dataset), uploading it to Google Cloud Storage (GCS), and then loading it into a BigQuery table.
+This project contains an Apache Airflow DAG that automates the workflow of downloading a dataset from [Kaggle](https://www.kaggle.com/datasets/ziya07/smart-logistics-supply-chain-dataset), uploading it to Google Cloud Storage (GCS), and then loading it into a BigQuery table. Please see the readme file within the airflow_project directory for details.
 
 ### DBT Pipeline
 
