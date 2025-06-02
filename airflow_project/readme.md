@@ -4,20 +4,6 @@ This project contains an Apache Airflow DAG that automates the workflow of downl
 
 ---
 
-## 📁 Project Structure
-
-airflow_project/
-├── dags/
-│   └── data_download.py         # Main DAG definition
-├── airflow.cfg                  # Airflow configuration
-├── airflow.db                   # Airflow metadata DB (SQLite for local use)
-├── logs/                        # Airflow logs
-├── webserver_config.py          # Airflow webserver config
-├── .gitignore                   # Excludes secrets and environment files
-└── README.md                    # Project documentation
-
----
-
 ## ⚙️ Prerequisites
 
 1. **Python 3.8+**
